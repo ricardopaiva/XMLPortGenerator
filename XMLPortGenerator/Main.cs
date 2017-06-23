@@ -30,6 +30,11 @@ namespace XMLPortGenerator
         {
             SaveToFile();
         }
+ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadFromFile();
+        }
         #endregion
 
         #region Functions
@@ -83,25 +88,14 @@ namespace XMLPortGenerator
             sb.AppendLine("                                                  SourceTable=Table" + nudSourceTableNo.Value + " }");
 
             bool FieldsStarted = false;
-            // loop fields
-            foreach (string line in txtFields.Lines)
+            string firstLine = txtFields.Lines[0];
+            string[] Fields = firstLine.Split(';');
+            foreach (string field in Fields)
             {
-                if ((FieldsStarted) && (line.StartsWith("    {")))
-                {
-                    string[] Values = line.Split(';');
                    
-                    sb.AppendLine("    { [" + GenerateGuid() + "];2 ;" + Values[2].PrepareForXMLField() + ";Element ;Field   ;");
-                    sb.AppendLine("                                                  DataType=" + new string(Values[3].Where(c => c > 'A' && c < 'z').ToArray()) + ";");
-                    sb.AppendLine("                                                  SourceField=" + txtSourceTableName.Text + "::" + Values[2].TrimEnd() + " }");
-                }
-                if (line.Equals("  FIELDS"))
-                {
-                    FieldsStarted = true;
-                }
-                if (line.Equals("  }"))
-                {
-                    FieldsStarted = false;
-                }
+                    sb.AppendLine("    { [" + GenerateGuid() + "];2 ;" + field.PrepareForXMLField() + ";Element ;Field   ;");
+                    sb.AppendLine("                                                  DataType=Text" + ";");
+                    sb.AppendLine("                                                  SourceField=" + txtSourceTableName.Text + "::" + field.TrimEnd() + " }");
             }
 
             sb.AppendLine("  }");
@@ -140,6 +134,18 @@ namespace XMLPortGenerator
         private string GenerateGuid()
         {
             return "{" + Guid.NewGuid().ToString().ToUpper() + "}";
+        }
+
+        private void LoadFromFile()
+        {
+            openFileDialog1.Filter = "CSV (*.csv)|*.csv|TXT (*.txt)|*.txt";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new
+                   System.IO.StreamReader(openFileDialog1.FileName);
+                txtFields.Text = sr.ReadToEnd();
+                sr.Close();
+            }
         }
         #endregion
 

@@ -44,6 +44,8 @@
             this.lblFields = new System.Windows.Forms.Label();
             this.btnStartProcessing = new System.Windows.Forms.Button();
             this.btnSaveToFile = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nudSourceTableNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudXMLPortNo)).BeginInit();
             this.SuspendLayout();
@@ -170,6 +172,7 @@
             this.txtFields.Name = "txtFields";
             this.txtFields.Size = new System.Drawing.Size(390, 358);
             this.txtFields.TabIndex = 11;
+            this.txtFields.Text = "Field Name 1;Field Name 2;Field Name 3";
             this.txtFields.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFields_KeyDown);
             // 
             // txtXMLPort
@@ -206,7 +209,7 @@
             // 
             // btnStartProcessing
             // 
-            this.btnStartProcessing.Location = new System.Drawing.Point(412, 12);
+            this.btnStartProcessing.Location = new System.Drawing.Point(530, 12);
             this.btnStartProcessing.Name = "btnStartProcessing";
             this.btnStartProcessing.Size = new System.Drawing.Size(102, 43);
             this.btnStartProcessing.TabIndex = 14;
@@ -216,7 +219,7 @@
             // 
             // btnSaveToFile
             // 
-            this.btnSaveToFile.Location = new System.Drawing.Point(520, 12);
+            this.btnSaveToFile.Location = new System.Drawing.Point(638, 12);
             this.btnSaveToFile.Name = "btnSaveToFile";
             this.btnSaveToFile.Size = new System.Drawing.Size(102, 43);
             this.btnSaveToFile.TabIndex = 15;
@@ -224,11 +227,26 @@
             this.btnSaveToFile.UseVisualStyleBackColor = true;
             this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(422, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 43);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Load CSV File";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 536);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSaveToFile);
             this.Controls.Add(this.btnStartProcessing);
             this.Controls.Add(this.lblFields);
@@ -273,6 +291,8 @@
         private System.Windows.Forms.Label lblFields;
         private System.Windows.Forms.Button btnStartProcessing;
         private System.Windows.Forms.Button btnSaveToFile;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
