@@ -87,15 +87,41 @@ namespace XMLPortGenerator
             sb.AppendLine("    { [" + GenerateGuid() + "];1 ;source              ;Element ;Table   ;");
             sb.AppendLine("                                                  SourceTable=Table" + nudSourceTableNo.Value + " }");
 
-            bool FieldsStarted = false;
-            string firstLine = txtFields.Lines[0];
-            string[] Fields = firstLine.Split(';');
-            foreach (string field in Fields)
+            if (TableObjectOption.Checked)
             {
-                   
+                bool FieldsStarted = false;
+                // loop fields
+                foreach (string line in txtFields.Lines)
+                {
+                    if ((FieldsStarted) && (line.StartsWith("    {")))
+                    {
+                        string[] Values = line.Split(';');
+
+                        sb.AppendLine("    { [" + GenerateGuid() + "];2 ;" + Values[2].PrepareForXMLField() + ";Element ;Field   ;");
+                        sb.AppendLine("                                                  DataType=" + new string(Values[3].Where(c => c > 'A' && c < 'z').ToArray()) + ";");
+                        sb.AppendLine("                                                  SourceField=" + txtSourceTableName.Text + "::" + Values[2].TrimEnd() + " }");
+                    }
+                    if (line.Equals("  FIELDS"))
+                    {
+                        FieldsStarted = true;
+                    }
+                    if (line.Equals("  }"))
+                    {
+                        FieldsStarted = false;
+                    }
+                }
+            }
+            else
+            {
+                string firstLine = txtFields.Lines[0];
+                string[] Fields = firstLine.Split(';');
+                foreach (string field in Fields)
+                {
+
                     sb.AppendLine("    { [" + GenerateGuid() + "];2 ;" + field.PrepareForXMLField() + ";Element ;Field   ;");
                     sb.AppendLine("                                                  DataType=Text" + ";");
                     sb.AppendLine("                                                  SourceField=" + txtSourceTableName.Text + "::" + field.TrimEnd() + " }");
+                }
             }
 
             sb.AppendLine("  }");

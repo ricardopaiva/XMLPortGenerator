@@ -46,8 +46,12 @@
             this.btnSaveToFile = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.TableObjectOption = new System.Windows.Forms.RadioButton();
+            this.CSVFileOption = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSourceTableNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudXMLPortNo)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSourceTableNo
@@ -166,11 +170,11 @@
             // 
             this.txtFields.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtFields.Location = new System.Drawing.Point(13, 166);
+            this.txtFields.Location = new System.Drawing.Point(13, 243);
             this.txtFields.MaxLength = 0;
             this.txtFields.Multiline = true;
             this.txtFields.Name = "txtFields";
-            this.txtFields.Size = new System.Drawing.Size(390, 358);
+            this.txtFields.Size = new System.Drawing.Size(390, 353);
             this.txtFields.TabIndex = 11;
             this.txtFields.Text = "Field Name 1;Field Name 2;Field Name 3";
             this.txtFields.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFields_KeyDown);
@@ -180,19 +184,19 @@
             this.txtXMLPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtXMLPort.Location = new System.Drawing.Point(412, 166);
+            this.txtXMLPort.Location = new System.Drawing.Point(412, 243);
             this.txtXMLPort.MaxLength = 0;
             this.txtXMLPort.Multiline = true;
             this.txtXMLPort.Name = "txtXMLPort";
             this.txtXMLPort.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtXMLPort.Size = new System.Drawing.Size(390, 358);
+            this.txtXMLPort.Size = new System.Drawing.Size(390, 353);
             this.txtXMLPort.TabIndex = 13;
             this.txtXMLPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXMLPort_KeyDown);
             // 
             // lblXMLPort
             // 
             this.lblXMLPort.AutoSize = true;
-            this.lblXMLPort.Location = new System.Drawing.Point(412, 147);
+            this.lblXMLPort.Location = new System.Drawing.Point(409, 215);
             this.lblXMLPort.Name = "lblXMLPort";
             this.lblXMLPort.Size = new System.Drawing.Size(48, 13);
             this.lblXMLPort.TabIndex = 12;
@@ -201,7 +205,7 @@
             // lblFields
             // 
             this.lblFields.AutoSize = true;
-            this.lblFields.Location = new System.Drawing.Point(12, 147);
+            this.lblFields.Location = new System.Drawing.Point(12, 215);
             this.lblFields.Name = "lblFields";
             this.lblFields.Size = new System.Drawing.Size(34, 13);
             this.lblFields.TabIndex = 10;
@@ -233,7 +237,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 43);
             this.button1.TabIndex = 16;
-            this.button1.Text = "Load CSV File";
+            this.button1.Text = "Load From File";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -241,11 +245,46 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // TableObjectOption
+            // 
+            this.TableObjectOption.AutoSize = true;
+            this.TableObjectOption.Checked = true;
+            this.TableObjectOption.Location = new System.Drawing.Point(23, 19);
+            this.TableObjectOption.Name = "TableObjectOption";
+            this.TableObjectOption.Size = new System.Drawing.Size(129, 17);
+            this.TableObjectOption.TabIndex = 17;
+            this.TableObjectOption.TabStop = true;
+            this.TableObjectOption.Text = "Table Object Text File";
+            this.TableObjectOption.UseVisualStyleBackColor = true;
+            // 
+            // CSVFileOption
+            // 
+            this.CSVFileOption.AutoSize = true;
+            this.CSVFileOption.Location = new System.Drawing.Point(23, 42);
+            this.CSVFileOption.Name = "CSVFileOption";
+            this.CSVFileOption.Size = new System.Drawing.Size(65, 17);
+            this.CSVFileOption.TabIndex = 18;
+            this.CSVFileOption.TabStop = true;
+            this.CSVFileOption.Text = "CSV File";
+            this.CSVFileOption.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.TableObjectOption);
+            this.groupBox1.Controls.Add(this.CSVFileOption);
+            this.groupBox1.Location = new System.Drawing.Point(15, 139);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(161, 72);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Fields File Format";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 536);
+            this.ClientSize = new System.Drawing.Size(814, 608);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSaveToFile);
             this.Controls.Add(this.btnStartProcessing);
@@ -268,6 +307,8 @@
             this.Text = "XMLPort Generator";
             ((System.ComponentModel.ISupportInitialize)(this.nudSourceTableNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudXMLPortNo)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +334,9 @@
         private System.Windows.Forms.Button btnSaveToFile;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RadioButton TableObjectOption;
+        private System.Windows.Forms.RadioButton CSVFileOption;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
